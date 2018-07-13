@@ -126,7 +126,7 @@ class Funcionario extends Model
      */
     public function buscaFuncionarios(): array
     {
-        $sql = "SELECT `nome_func`, `sobrenome_func` FROM `funcionarios` GROUP BY nome_func,sobrenome_func ORDER BY nome_func ASC";
+        $sql = "SELECT `nome_func`, `sobrenome_func` FROM `funcionarios` GROUP BY nome_func,sobrenome_func ORDER BY nome_func ASC limit 300";
         $r = $this->db->query($sql);
         $r = $r->fetchAll();
         return $r;
