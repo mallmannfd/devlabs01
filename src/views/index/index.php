@@ -1,9 +1,9 @@
-<table class="table table-bordered">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <td>
-                <b>Nome</b>
-            </td>
+            <th scope="col">
+                Nome
+            </th>
         </tr>
     </thead>
     <tbody>
