@@ -10,11 +10,19 @@ namespace App\Controller;
 
 
 use App\Core\Controller;
+use App\Model\Funcionario;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        $this->loadTemplate('index/index');
+        $funcionario = new Funcionario();
+
+        $dados = [
+            'funcionarios' => $funcionario->buscaFuncionarios()
+        ];
+
+        header('Content-type: text/html; charset=ISO-8859-1');
+        $this->loadTemplate('index/index', $dados);
     }
 }
