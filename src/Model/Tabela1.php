@@ -58,6 +58,9 @@ class Tabela1 extends Model
      */
     public function setNome($nome)
     {
+        if (empty($nome)) {
+            throw new \Exception('Nome é obrigatório');
+        }
         $string = str_replace(' ', '', $nome);
 
         if (preg_match('/\W|\d/', $string)) {
