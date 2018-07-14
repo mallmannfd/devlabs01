@@ -17,6 +17,7 @@
         <div class="form-group">
             <label for="senha">Senha:</label>
             <input type="password" name="senha" id="senha" class="form-control" placeholder="Sua senha">
+            <small class="form-text text-muted">Senha deve conter no mínimo 6 caracteres, ter uma letra e um número.</small>
         </div>
 
         <div class="form-group">
