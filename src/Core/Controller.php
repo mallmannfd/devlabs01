@@ -22,4 +22,8 @@ class Controller
         require_once 'src/views/template.php';
     }
 
+    public function isPost()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'POST';
+    }
 }

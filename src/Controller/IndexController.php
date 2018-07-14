@@ -25,4 +25,9 @@ class IndexController extends Controller
         header('Content-type: text/html; charset=ISO-8859-1');
         $this->loadTemplate('index/index', $dados);
     }
+
+    public function add()
+    {
+        $this->loadTemplate('index/add');
+    }
 }
