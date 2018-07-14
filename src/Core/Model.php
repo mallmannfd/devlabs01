@@ -9,6 +9,8 @@
 namespace App\Core;
 
 
+use ReflectionClass;
+
 class Model
 {
     /**
@@ -35,14 +37,57 @@ class Model
 
     /**
      * Método para inserir um objeto no banco de dados
-     * @return bool
      */
-    public function insere(): bool
+    public function insere(): void
     {
-        $tabela = get_called_class();
+        $tabela = $this->getSource();
 
-        var_dump($tabela);exit;
+        if (empty($this->getSource())) {
 
-        $sql = "INSERT INTO :tabela ()";
+            $tabela = explode('\\', get_called_class());
+            $tabela = end($tabela);
+            $tabela = strtolower($tabela) . 's';
+
+        }
+
+        $campos = $this->formataCamposTabela();
+
+        $valores = implode(', ', array_values($campos));
+        $campos = implode(', ', array_keys($campos));
+
+        $sql = "INSERT INTO {$tabela} ({$campos}) VALUES ({$valores})";
+        $this->db->query($sql);
+    }
+
+    /**
+     * Método responsável por formatar e devolver um array com os campos da tabela
+     * @return array
+     */
+    private function formataCamposTabela(): array
+    {
+        $array = array_keys((array) $this);
+
+        $campos = [];
+        foreach ($array as $key => &$value) {
+            if (false === strpos($value, get_called_class())) {
+                unset($array[$key]);
+                continue;
+            }
+
+            $value = str_replace(get_called_class(), '', $value);
+            $function  = 'get' . ucfirst(trim($value));
+
+            $fieldValue = $this->$function();
+
+            if (is_null($fieldValue)){
+                unset($array[$key]);
+                continue;
+            }
+
+            $campos[trim($value)] = "'{$fieldValue}'";
+
+        }
+
+        return $campos;
     }
 }
