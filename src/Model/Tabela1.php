@@ -126,5 +126,14 @@ class Tabela1 extends Model
         $this->ultimaAlteracao = $ultimaAlteracao;
     }
 
+    /**
+     * Função para buscar os registros da tabela 1 aproveitando a procedure criada
+     * @return array
+     */
+    public function buscaRegistros(): array
+    {
+        return $this->db->query("CALL Busca_Registros")->fetchAll();
+    }
+
 
 }

@@ -47,4 +47,15 @@ class IndexController extends Controller
         }
         $this->loadTemplate('index/add');
     }
+
+    public function registros()
+    {
+        $tabela1 = new Tabela1();
+
+        $dados = [
+            'registros' => $tabela1->buscaRegistros()
+        ];
+
+        $this->loadTemplate('index/registros', $dados);
+    }
 }
