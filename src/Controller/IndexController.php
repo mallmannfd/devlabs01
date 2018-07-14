@@ -39,8 +39,10 @@ class IndexController extends Controller
                 $registro->insere();
 
                 $this->flashMessage('success', 'Registro inserido com sucesso');
-            }catch (\Exception $e){
+            }catch (\PDOException $e){
                 $this->flashMessage('danger', 'Houve um erro ao efetuar a inserção no banco: ' . $e->getMessage());
+            }catch (\Exception $e){
+                $this->flashMessage('danger', $e->getMessage());
             }
         }
         $this->loadTemplate('index/add');
