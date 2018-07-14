@@ -11,7 +11,6 @@
         <div class="form-group">
             <label for="email">E-mail:</label>
             <input type="email" name="email" id="email" class="form-control" placeholder="teste@teste.com">
-            <small class="form-text text-muted">Apenas pra ficar mais bonito que nem na documentação.</small>
         </div>
 
         <div class="form-group">
