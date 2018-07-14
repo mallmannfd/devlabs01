@@ -58,6 +58,12 @@ class Tabela1 extends Model
      */
     public function setNome($nome)
     {
+        $string = str_replace(' ', '', $nome);
+
+        if (preg_match('/\W|\d/', $string)) {
+            throw new \Exception('Nome não deve conter números ou caracteres especiais');
+        }
+
         $this->nome = $nome;
     }
 
