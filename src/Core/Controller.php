@@ -26,4 +26,24 @@ class Controller
     {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
+
+    public function showMessage()
+    {
+        if (isset($_SESSION['message'])){ ?>
+            <div class="alert alert-<?=$_SESSION['message']['type']?>">
+                <?=$_SESSION['message']['message']?>
+            </div>
+            <?php
+            unset($_SESSION['message']);
+        }
+    }
+
+    public function flashMessage($type, $message)
+    {
+        $_SESSION['message'] = [
+            'type' => $type,
+            'message' => $message
+        ];
+    }
+
 }
