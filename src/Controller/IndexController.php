@@ -30,12 +30,18 @@ class IndexController extends Controller
     public function add()
     {
         if ($this->isPost()) {
-            $registro = new Tabela1();
-            $registro->setNome($_POST['nome']);
-            $registro->setSenha($_POST['senha']);
-            $registro->setEmail($_POST['email']);
+            try{
+                $registro = new Tabela1();
+                $registro->setNome($_POST['nome']);
+                $registro->setSenha($_POST['senha']);
+                $registro->setEmail($_POST['email']);
 
-            $registro->insere();
+                $registro->insere();
+
+                $this->flashMessage('success', 'Registro inserido com sucesso');
+            }catch (\Exception $e){
+                $this->flashMessage('danger', 'Houve um erro ao efetuar a inserção no banco: ' . $e->getMessage());
+            }
         }
         $this->loadTemplate('index/add');
     }
