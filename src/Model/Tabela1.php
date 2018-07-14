@@ -100,7 +100,11 @@ class Tabela1 extends Model
      */
     public function setSenha($senha)
     {
-        $this->senha = $senha;
+        if (false == preg_match("/(?=.*[a-z])(?=.*\d).{6,}/", $senha)) {
+            throw new \Exception("Senha deve possuir no mínimo 6 caracteres e ter no mínimo uma letra e um número");
+        }
+
+        $this->senha = md5($senha);
     }
 
     /**
