@@ -1,3 +1,4 @@
+<?=$this->showMessage()?>
 <div class="col-md-6">
     <h1>Adicionar na tabela1</h1>
 
