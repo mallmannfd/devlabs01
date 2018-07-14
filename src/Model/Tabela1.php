@@ -64,7 +64,7 @@ class Tabela1 extends Model
             throw new \Exception('Nome não deve conter números ou caracteres especiais');
         }
 
-        $this->nome = $nome;
+        $this->nome = trim($nome);
     }
 
     /**
@@ -80,6 +80,10 @@ class Tabela1 extends Model
      */
     public function setEmail($email)
     {
+        if (false === filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new \Exception('E-mail inválido');
+        }
+
         $this->email = $email;
     }
 
