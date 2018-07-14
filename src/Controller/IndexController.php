@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Core\Controller;
 use App\Model\Funcionario;
+use App\Model\Tabela1;
 
 class IndexController extends Controller
 {
@@ -28,6 +29,14 @@ class IndexController extends Controller
 
     public function add()
     {
+        if ($this->isPost()) {
+            $registro = new Tabela1();
+            $registro->setNome($_POST['nome']);
+            $registro->setSenha($_POST['senha']);
+            $registro->setEmail($_POST['email']);
+
+            $registro->insere();
+        }
         $this->loadTemplate('index/add');
     }
 }
