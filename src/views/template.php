@@ -5,6 +5,24 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Registros
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/index/add">Adicionar</a>
+                    <a class="dropdown-item" href="/index/registros">Ver</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
     <?php $this->loadView($viewName, $viewData); ?>
 </div>
